@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            input[type='text']{width:100px;}
+        </style>
+    </head>
+    <body>
+        <form action="#" method="post" name="frm">
+            <!-- hidden 숨겨서 전송 -->
+            <input type="hidden" name="ipaddress" value="127.0.0.1">
+            <!-- search 내용지우기 표시됨 -->
+            <input type="search" name="search"><br>
+            <input type="email" name="email" placeholder="이메일 입력"><br>
+            <label>아이디</label>
+            <input type="text" name="id" maxlength="5"><br>
+            <label>패스워드</label>
+            <input type="password" name="pw" placeholder="패스워드는 6자리 이상" maxlength="10"><br>
+            <input type="submit" value="로그인">
+            <input type="reset" value="초기화">
+        </form>
+    </body>
+</html>
