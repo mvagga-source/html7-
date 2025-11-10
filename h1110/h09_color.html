@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding:0;margin:0;}
+        div{
+            margin:100px;
+            width:500px; height:300px;
+            border:30px dashed black; /* solid :선, dotted:둥근점선, dashed:점선*/
+            background-color:aquamarine;
+            /* 
+                선외곽에서 부터 : border-box;
+                선안쪽에서 부터 : padding-box;
+                내용안쪽 부터 : content-box;
+            */
+            background-clip:content-box; 
+            padding:50px;
+
+        }
+    </style>
+</head>
+<body>
+    <div>clip1</div>
+</body>
+</html>

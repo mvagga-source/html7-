@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS</title>
+    <!--외부 스타일시트-->
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <!--내부 스타일시트-->
+    <style>
+        /* 전체 선택자 */
+        *{padding:0;margin:0;}
+        /* 태그 선택자 */
+        h1{color:blue;}
+        p{font-size:20px;
+        /* 클래스 선택자 - 여러곳에 적용할때 사용하는 선택자 */}
+        .c_all{border:1px solid #000000;background: yellow;}
+        /* 
+            ID 선택자 - 유일한 곳에 적용할때 사용하는 선택자 - 1개 적용 가능 
+            선택자 적용순위 : 1.인라인 선택자, 2.id 선택자, 3.class 선택자, 4.태그 선택자
+        */
+        #tit{color:red;}
+        span{color:green;}
+        /* 인라인 선택자 */
+    </style>
+</head>
+<body>
+    
+    <h1 id="tit">IT과학 뉴스기사</h1>
+    <h1 class="c_all">대장동 항소 포기' 검찰 내부반발 계속…"범죄수익 환수 막혀"(종합2보)</h1>
+    <p><span>김영석 대검찰청 감찰1과 검사는</span> 9일 검찰 내부망 이프로스에 올린 글에서 "검찰 역사상 일부 무죄가 선고되고 엄청난 금액의 추징이 선고되지 않은 사건에서 항소 포기를 한 전례가 있었나"라며 이같이 주장했다.</p>
+    <hr>    
+    <h1>대장동 항소 포기' 검찰 내부반발 계속…"범죄수익 환수 막혀"(종합2보)</h1>
+    <p class="c_all">김영석 대검찰청 감찰1과 검사는 9일 검찰 내부망 이프로스에 올린 글에서 "검찰 역사상 일부 무죄가 선고되고 엄청난 금액의 추징이 선고되지 않은 사건에서 항소 포기를 한 전례가 있었나"라며 이같이 주장했다.</p>
+    <hr>    
+    <h1>대장동 항소 포기' 검찰 내부반발 계속…"범죄수익 환수 막혀"(종합2보)</h1>
+    <p class="c_all">김영석 대검찰청 감찰1과 검사는 9일 검찰 내부망 이프로스에 올린 글에서 "검찰 역사상 일부 무죄가 선고되고 엄청난 금액의 추징이 선고되지 않은 사건에서 항소 포기를 한 전례가 있었나"라며 이같이 주장했다.</p>
+
+</body>
+</html>
