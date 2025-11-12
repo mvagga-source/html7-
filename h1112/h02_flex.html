@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex 플렉서블 박스 레이아웃</title>
+    <style>
+        *{padding:0;margin:0;list-style: none;}
+        /*
+            ## 그리드 시스템 ##
+
+            flex-direction: column; 세로기준, row : 가로기준, row-reverse : 우측가로 기준
+            flex-wrap: wrap; 여러줄 표시, no-wrap:한줄 표시, wrap-reverse : 위쪽배치
+            justify-content(가로정렬): flex-end; flex-start: 첫지점, flex-end : 끝지점, center:가운데 배치, space-around : 양끝 공란 기준으로 간격배치, space-between : 양끝점 기준으로 간격 배치
+            align-items(세로정렬): center;, stretch:세로방향으로 늘림(height가 없어야 함), flex-start, flex-end
+            align-content: flex-start; 세로정렬에서 위쪽 맞춤, flex-end : 아래쪽 맞춤, space-between : 위쪽과 아래쪽 맞춤, space-around : 모든 공백제공, 위쪽, 아래쪽
+        */
+        #main{
+            width:700px;height: 200px;background: #eee;margin: 100px;
+            border:1px solid black;            
+
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+
+            /*
+            align-content: space-around;
+            flex-wrap: wrap;
+            flex-direction: row;
+            */
+        }        
+        div{
+            width: 180px;height: 80px;text-align: center;
+            border:1px solid red;
+        }
+        /* 순서배치 변경 */
+        /*
+        .c01{order:1;}
+        .c02{order:4;}
+        .c03{order:5;}
+        .c04{order:3;}
+        .c05{order:2;}
+        */
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="c01">1</div>
+        <div class="c02">2</div>
+        <div class="c03">3</div>
+        <div class="c04">4</div>
+        <div class="c05">5</div>
+    </div>
+</body>
+</html>
