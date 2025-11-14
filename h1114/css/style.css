@@ -1,0 +1,141 @@
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.notice-container {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.notice-container h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* 테이블 래퍼(모바일에서 스크롤 가능) */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* 테이블 기본 스타일 */
+.notice-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.notice-table th,
+.notice-table td {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 15px 10px;
+    white-space: nowrap;
+}
+
+.notice-table th {
+    background: #f7f7f7;
+    font-weight: 600;
+}
+
+.notice-table tbody tr:hover {
+    background: #fafafa;
+}
+
+/* 페이지네이션 */
+.pagination {
+    margin: 20px 0;
+}
+
+.pagination button {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 6px 12px;
+    margin: 0 3px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background: #0066ff;
+    color: #fff;
+    border-color: #0066ff;
+}
+
+/* 검색창 */
+.search-box {
+    margin-top: 20px;
+}
+
+.search-box input {
+    width: 200px;
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+}
+
+.search-box button {
+    padding: 7px 15px;
+    background: #0066ff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* ----------------------------------------------------------
+   📱 반응형 스타일 (모바일 ≤ 768px)
+---------------------------------------------------------- */
+@media (max-width: 768px) {
+    .notice-container {
+        width: 95%;
+        margin: 30px auto;
+    }
+
+    .notice-container h2 {
+        font-size: 26px;
+    }
+
+    .notice-table th,
+    .notice-table td {
+        padding: 10px 6px;
+        font-size: 14px;
+    }
+
+    .pagination button {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .search-box input {
+        width: 150px;
+    }
+
+    .search-box button {
+        padding: 6px 12px;
+    }
+}
+
+/* ----------------------------------------------------------
+   📱 더 작은 화면 (≤ 480px)
+---------------------------------------------------------- */
+@media (max-width: 480px) {
+    .notice-container h2 {
+        font-size: 22px;
+    }
+
+    .pagination button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .search-box input {
+        width: 130px;
+        font-size: 12px;
+    }
+
+    .search-box button {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
