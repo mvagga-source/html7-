@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트</title>
+    <!-- 자바스크립트 외부링크 연결 -->
+    <script src="js/script.js"></script>
+    <script>
+        document.write("안녕<br>")
+    </script>    
+</head>
+<body>
+    <script>
+        // html 태그 그대로 출력 가능 => "<br>"     /* 여러줄 주석 */
+        // 변수 선언 : var, let, const(상수)
+        // var 중복선언 가능, let 중복선언 불가, const 상수는 한번 값이 정해지면 수정불가
+        // 대소문자 구분홤
+
+        // 화면출력
+        document.write("<h1>Hi</h1>")
+
+        // 경고창
+        //alert("알림창")
+
+        //var num = 0;
+        //document.write(num+"<br>");
+
+        // 입력창
+        /*
+        var input = prompt("입력창 숫자를 입력하세요 >>");
+        document.write("입력값 : ",input+"<br>");
+        */
+
+        // 확인창
+        //let result = confirm("delete ok? >> ");
+        //document.write("입력값 : ",result+"<br>");
+
+        //let a; // undefine(정의되지 않음)
+        //const A = 10; 
+        //A = 30
+        //document.write("상수 : ",A+"<br>");
+
+        // 콘솔창 출력 F12
+        //console.log("콘솔창에 로그가 출력됨");
+
+        var b = 100;
+        document.write(typeof(b),"<br>");
+        var b = 1.1;
+        document.write(typeof(b),"<br>");
+        var b = true;
+        document.write(typeof(b),"<br>");        
+        var b = null;
+        document.write(typeof(b),"<br>");                
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{color:blue;}
+        .txt{color:red;}
+        div{border:1px solid black;}
+    </style>
+</head>
+<body>
+    <h1 class="txt">과일목록</h1>
+    <ul>
+        <li>바나나</li>
+        <li class="txt">배</li>
+        <li class="txt">사과</li>
+        <li>복숭아</li>
+        <h2 id="d02">
+            <ul>
+                <li>멜론</li>
+                <li>망고</li>
+            </ul>
+        </h2>
+        <li class="txt">수박</li>
+    </ul>
+    <script>
+        // 바로 실행할 경우 스크입트는 아래에 위치 해야함
+        //console.log(document.querySelector("#d02").innerText);
+        document.querySelector("#d02").innerHTML="<div>사각형 모델</div>";
+        //console.log(document.querySelector("#d02").innerHtml);
+    </script>    
+</body>
+</html>

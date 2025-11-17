@@ -1,0 +1,1 @@
+document.write("<h1>외부링크 연결</h1>")

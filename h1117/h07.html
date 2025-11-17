@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        /*
+        var numType = "";
+        var num = Number(prompt("점수 입력 >> "));
+        if (num >= 90)      numType = "A";
+        else if (num >= 80) numType = "B";
+        else if (num >= 70) numType = "C";
+        else if (num >= 60) numType = "D";
+        else numType = "F";
+
+        document.write("당신의 학점은 : ",numType)
+        */
+
+        function onginBtn(){
+
+            var id = document.querySelector("#id").value;
+            var pw = document.querySelector("#pw").value;
+
+            if (id == "aaa" && pw == "1111")
+                alert("로그인 성공!!");
+            else
+                alert("아이디 또는 패스워드가 일치하지 않습니다.");
+        }
+
+    </script>
+
+    <label>아이디</label>
+    <input type="text" id="id"><br>
+    <label>패스워드</label>
+    <input type="text" id="pw"><br>
+    <button type="button" onclick="onginBtn()">로그인</button>
+
+</body>
+</html>

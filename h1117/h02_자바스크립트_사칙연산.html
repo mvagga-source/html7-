@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사칙연산</title>
+</head>
+<body>
+    
+    <script>
+        /*
+            타입변경 : Number(), toString(), Boolean()
+            자바스크립트 특징 - 문자열 숫자와 문자열 숫자를 *,-,/를 하면 자동 형변환됨
+                            - 더하기는 자동형변환이 안되고 문자열로 인식됨 / 문자열 + 숫자 = 문자열 타입으로 변경
+        */
+        var a = prompt("글자 입력 >> "); // 문자열 타입
+        var b = prompt("글자 입력2 >> "); // 문자열 타입
+
+        //document.write(a,b,"<br>");
+        //document.write(typeof(a)," , ",typeof(b),"<br>");
+        
+        // + : 숫자 계산시 형변환 필요
+        //document.write(a+b,"<br>");
+        document.write("a+b = ",Number(a)+Number(b),"<br>");
+
+        // 자동 형변환되어 계산됨
+        document.write("a*b = ",a*b,"<br>");
+        document.write("a-b = ",a-b,"<br>");
+        document.write("a/b = ",a/b,"<br>");        
+
+        // 증감연산자
+        /*
+        var b = 0
+        var a = ++b;
+        document.write(a, " / ", b,"<br>");
+        a = b++;
+        document.write(a, " / ", b,"<br>");
+        a += b;
+        document.write(a, " / ", b,"<br>");
+        */
+
+    </script>
+</body>
+</html>
