@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td{border:1px solid black;border-collapse: collapse;}
+        th,td{width:100px;height:30px;text-align: center;}
+        #txt{width:400px;height:50px;border:1px solid black;}
+    </style>
+</head>
+<body>
+    <script>
+        /*
+        // 함수 - 코드 중복방지, 관리의 효율성
+        function calc(a,b){
+            return (a+b);
+        }
+
+        function func(a,b,tstr){
+            //document.querySelector("#"+tstr).innerText = "결과값 : "+(a+b);
+            document.querySelector("#"+tstr).innerText = calc(a,b);
+        }
+        */
+
+
+
+    </script>
+
+    <!--
+        <div id="txt1"></div>
+        <button type="button" onclick="func(10,2,'txt1')">확인</button>
+    
+        <div id="txt2"></div>
+        <button type="button" onclick="func(7,1,'txt2')">확인</button>    
+    -->
+
+    <!--<div id="txt">1,홍길동,100,100</div>-->
+    <input type="text" id="txt" onkeyup="keyBtn(event)"><br>
+    <button type="button" onclick="conBtn()">확인</button>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>합계</th>
+            <th>평균</th>
+        </tr>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+
+        function keyBtn(e){
+            if(e.keyCode == 13){
+                conBtn();
+            }
+        }
+
+        function conBtn(){
+            //alert("a")
+
+            var txt = document.querySelector("#txt");
+            var tbody = document.querySelector("#tbody");
+
+            var arr = txt.value.split(","); // 문자열을 배열로 분리
+            //console.log(arr);
+
+            var sum = Number(arr[2])+Number(arr[3]);
+            var avg = sum/2;
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${arr[0]}</td>
+                    <td>${arr[1]}</td>
+                    <td>${arr[2]}</td>
+                    <td>${arr[3]}</td>
+                    <td>${sum}</td>
+                    <td>${avg}</td>
+                </tr>
+            `;
+
+            txt.value = "";
+            txt.focus();
+        }
+
+    </script>    
+</body>
+</html>

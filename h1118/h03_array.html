@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // 배열 - 여러개의 값을 저장
+        /* 
+        var i = 0;
+        document.write(i+"<br>");
+
+        var arr = [1,2,3,4,5];
+        document.write(arr[0]+"<br>")
+        document.write(arr[1]+"<br>")
+        document.write(arr[2]+"<br>")
+        document.write(arr[3]+"<br>")
+        document.write(arr[4]+"<br>")
+
+        var arr2 = [1,'홍길동',3,100,90.5];
+        document.write(arr2[0]+"<br>")
+        document.write(arr2[1]+"<br>")
+        document.write(arr2[2]+"<br>")
+        document.write(arr2[3]+"<br>")
+        document.write(arr2[4]+"<br>")        
+        */
+
+        /* 
+            배열선언 방법 
+
+            var arr = [1,2,3];  // 1. 리터럴 생성
+            document.write(arr[0]+"<br>")
+            //var arr2 = new Array();
+            var arr2 = new Array(4,5,6);    // 2. new객체 생성
+            document.write(arr2[0]+"<br>")
+        */
+
+        /* 
+            배열 추가 - push, unshift, splice
+
+            arr.push(4);
+            document.write(arr+"<br>")
+            arr.unshift('홍길동');
+            document.write(arr+"<br>")        
+            arr.splice(2,0,"고길동"); // 시작점, 시작점 포함 삭제 갯수, 변경값
+            document.write(arr+"<br>")
+    
+            // 배열수정
+            arr[0] = 100;
+            document.write(arr+"<br>")
+        */
+
+        /*
+            배열삭제 - pop - 맨뒤 삭제, shift - 맨앞 삭제, splice
+
+            
+            arr.pop();
+            document.write(arr+"<br>");
+            arr.shift();
+            document.write(arr+"<br>");
+        */
+
+
+    </script>
+
+    <label>이름</label>
+    <input type="text" id="name" onkeyup="keyBtn(event)" placeholder="이름을 입력하세요">
+    <button type="button" onclick="saveBtn()">저장</button>
+    <div id="txt"></div>
+
+    <script>
+
+        var arr = ['홍길동', '고길동', '이길동'];
+        document.querySelector("#txt").innerText=arr;
+
+        function keyBtn(event){
+            //console.log("입력한 키값 : ", event.keyCode);
+            if(event.keyCode == 13){
+                saveBtn();
+            }
+        }
+
+        function saveBtn(){
+
+            arr.push(document.querySelector("#name").value);
+            document.querySelector("#txt").innerText = arr;
+            document.querySelector("#name").value = "";
+        }
+
+
+        
+    </script>
+</body>
+</html>

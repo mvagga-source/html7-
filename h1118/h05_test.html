@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,td{border:1px solid black;border-collapse: collapse;}
+        th, td{width:100px;height:20px;text-align:center;}
+        div{width:400px;height:50px;border:1px solid black;}
+    </style>
+</head>
+<body>
+    <input type="text" id="name" onkeyup="keyBtn(event)">
+    <button type="button" onclick="saveBtn()">저장</button>
+    <div id="txt"></div>
+    <table>
+        <tr><th>이름</th></tr>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+
+        var arr = new Array();
+
+        function saveBtn(){
+
+            var name = document.querySelector("#name");
+            var txt = document.querySelector("#txt");
+            var tbody = document.querySelector("#tbody");
+
+            arr.push(name.value);
+
+            // 박수 추가
+            txt.innerText = arr;
+
+            // 테이블 추가
+            tbody.innerHTML += `<tr><td>${name.value}</td></tr>`;
+
+            name.value = "";
+            name.focus();
+        }
+
+        function keyBtn(e){
+            if(e.keyCode == 13){
+                saveBtn();
+            }
+        }
+
+    </script>
+</body>
+</html>

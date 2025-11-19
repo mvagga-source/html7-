@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td{border:1px solid black;border-collapse: collapse;}
+        th,td{width:100px;height:30px;text-align: center;}
+        #txt{width:400px;height:50px;border:1px solid black;}
+    </style>
+</head>
+<body>
+    <label>이름</label>
+    <input type="text" id="name" onkeyup="keyBtn(event)">
+    <button type="button" onclick="saveBtn()">저장</button><br><br>
+    <div id="txt"></div><br>
+    <table>
+        <tr><th>이름</th></tr>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+    <script>
+
+        var arr = [];
+        document.querySelector("#txt").innerText = arr;
+        document.querySelector("#name").focus();
+        
+        function saveBtn(){
+            arr.push(document.querySelector("#name").value);
+            document.querySelector("#txt").innerText = arr;
+            console.log(arr);
+            addTable();
+            document.querySelector("#name").value = "";
+            document.querySelector("#name").focus();            
+        }
+
+        function keyBtn(e){
+            if(e.keyCode == 13){
+                saveBtn();
+            }
+        }
+
+        function addTable(){
+
+            tbody = document.querySelector("#tbody");
+            tbody.innerHTML += `<tr><td>${document.querySelector("#name").value}</td></tr>`;
+
+            /*
+            for(i=0;i<arr.length;i++){
+                tbody.innerHTML += `<tr><td>${arr[i]}</td></tr>`;
+            }
+            */
+        }
+
+    </script>
+</body>
+</html>

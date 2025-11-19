@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        var i=0;
+        while(i<10){
+            document.write(i+"<br>")
+            i++;
+        }
+        */
+
+        // document.write(Math.random()+"<br>");
+
+        /*
+            난수 생성 (0~9)
+            0 <= Math < 1  ----->   0*10 <= parseInt(Math * 10) < 1*10
+
+            문자열 -> 숫자형 : Number(), String(), Boolean()
+            실수형 -> 정수형 : parseInt()
+            정수형 -> 실수형 : parseFloat()
+
+            parseInt(Math.random()*10)+1  // 1~10
+            parseInt(Math.random()*45)+1  // 1~45
+            parseInt(Math.random()*45)    // 0~44
+        
+        document.write((parseInt(Math.random()*10)+1)+"<br>");
+        document.write((parseInt(Math.random()*10)+1)+"<br>");
+        document.write((parseInt(Math.random()*10)+1)+"<br>");
+        document.write((parseInt(Math.random()*10)+1)+"<br>");
+        document.write((parseInt(Math.random()*10)+1)+"<br>");
+
+        */
+
+        var rNum = parseInt(Math.random()*100)+1;
+
+        i = 0;
+        while(i<10){
+
+            num = Number(prompt("1~100값을 입력하세요 ("+(10-i)+")"));
+
+            if (num > rNum)
+                alert(num+" 보다 낮아야 합니다.");  // 입력한 값이 작습니다. 더 큰수를 입력하세요
+            else if(num < rNum)
+                alert(num+" 보다 높아야 합니다.");
+            else{
+                alert("정답 : "+num);
+                break;
+            }
+
+            i++;
+        }
+
+        document.write("정답 : "+rNum);
+
+    </script>
+</body>
+</html>

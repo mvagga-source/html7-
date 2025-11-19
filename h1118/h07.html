@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        table, th, td{border:1px solid black;border-collapse: collapse;}
+        th,td{width:100px;height:30px;text-align: center;}
+    </style>    
+</head>
+<body>
+    <script>
+
+        function inputClear(){
+
+            document.querySelector("#sno").value = "";
+            document.querySelector("#name").value = "";
+            document.querySelector("#kor").value = "";
+            document.querySelector("#eng").value = "";
+            document.querySelector("#math").value = "";
+
+            document.querySelector("#sno").focus();
+        }
+        
+        function saveBtn(){
+
+            //alert("학생성적 저장");
+
+            var sno = document.querySelector("#sno").value;
+            if(sno.length<=0){
+                alert("학생번호 입력");
+                document.querySelector("#sno").focus();
+                return;
+            }
+            var name = document.querySelector("#name").value;
+            var kor = Number(document.querySelector("#kor").value);
+            var eng = Number(document.querySelector("#eng").value);
+            var math = Number(document.querySelector("#math").value);
+            var sum = kor+eng+math;
+            var avg = sum/3;
+
+            var tbody = document.querySelector("#tbody");
+
+            tbody.innerHTML += `
+                <tr id=${sno}>
+                    <td>${sno}</td>
+                    <td>${name}</td>
+                    <td>${kor}</td>
+                    <td>${eng}</td>
+                    <td>${math}</td>
+                    <td>${sum}</td>
+                    <td>${avg.toFixed(2)}</td>
+                    <td>
+                        <button type="button" onclick="updateBtn(${sno})">수정</button>
+                        <button type="button" onclick="deleteBtn(event,${sno})">삭제</button>
+                    </td>
+                </tr>
+            `
+            inputClear();
+        }//saveBtn()
+
+        function updateBtn(event){
+            //alert("수정");
+
+        }// updateBtn(e)
+
+        function deleteBtn(event, sno){
+            //alert("삭제");
+            console.log(event.target.closest("tr"));
+            console.log(event.target.closest("tr").childNodes[2]);
+
+            //event.target.closest("tr").remove();
+            //document.getElementById(event.target.parentElement.parentElement.id).remove();
+
+            //document.getElementsByClassName(sno);
+            //document.getElementsByTagName(tr);
+
+            //document.querySelector("#"+sno).remove();
+            
+
+        } //deleteBtn(e)
+
+        function enterBtn(event){
+
+            console.log(event);
+
+            if(event.keyCode == 13){
+                saveBtn();
+            }
+        } //enterBtn(event)
+
+    </script>
+
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno"><br>
+        <label>이름</label>
+        <input type="text" id="name" name="name"><br>
+        <label>국어</label>
+        <input type="text" id="kor" name="kor"><br>
+        <label>영어</label>
+        <input type="text" id="eng" name="eng"><br>
+        <label>수학</label>
+        <input type="text" id="math" name="math" ><br>
+        <button type="button" onclick="saveBtn()">성적저장</button>
+    </form><br>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>합계</th>
+            <th>평균</th>
+            <th>비고</th>
+        </tr>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+</body>
+</html>

@@ -219,10 +219,11 @@
 
       var today = new Date();
       var year = today.getFullYear();
-      var month = ('0' + (today.getMonth()+1)).slice(-2);
-      var day = ('0' + today.getDate()).slice(-2);
-
-      var hours = ('0' + today.getHours()).slice(-2);
+      var month = today.getMonth()+1;
+      var day = today.getDate()      
+      //var month = ('0' + (today.getMonth()+1)).slice(-2);
+      //var day = ('0' + today.getDate()).slice(-2);
+      //var hours = ('0' + today.getHours()).slice(-2);
 
       tbody = document.querySelector("#tbody");      
 
@@ -233,7 +234,7 @@
               <td class="title"><a href="#">홈페이지 리뉴얼 오픈!</a></td>
               <td>운영팀</td>
               <td class="date">${year}-${month}-${day}</td>
-              <td class="views">${hours}</td>
+              <td class="views">100</td>
             </tr>
           `;
       }
@@ -257,19 +258,14 @@
         <script>
 
           pagination = document.querySelector(".pagination");
+
           pagination.innerHTML += `<a href="#">&laquo;</a>`
 
           for(i=1;i<=5;i++){
-
-              if(i==1){
-                pagination.innerHTML += `
-                  <a href="#" class="active">${i}</a>
-                `;
-              }else{
-                pagination.innerHTML += `
-                  <a href="#">${i}</a>
-                `;
-              }          
+              if(i==1)
+                pagination.innerHTML += `<a href="#" class="active">${i}</a>`;
+              else
+                pagination.innerHTML += `<a href="#">${i}</a>`;
           }
 
           pagination.innerHTML += `<a href="#">&raquo;</a>`
