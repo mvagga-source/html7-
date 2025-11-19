@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        table, th, td{border:1px solid black;border-collapse: collapse;}
+        table{width:1200px;}
+        th,td{height:30px;text-align: center;font-size: 12px;}
+        img{width:100px;}
+    </style>    
+    <script>
+
+        /*
+            <tr id="1">
+                <td>1</td>
+                <td>홍길동</td>
+                <td>100</td>
+                <td>90</td>
+                <td>80</td>
+                <td>270</td>
+                <td>90</td>
+                <td>
+                    <button type="button" onclick="updateBtn(this)">수정</button>
+                    <button type="button" onClick="deleteBtn(this)">삭제</button>
+                </td>
+            </tr>        
+        */
+
+        $(function(){
+
+            $("#takeBtn").click(function(){
+                //alert("takeBtn");
+
+                $.ajax({
+                    url:"https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=bc215d8e4796a714b85a16e497b814711f7eb9528a81beafc8078486fa9b19cd&numOfRows=10&pageNo=2&MobileOS=ETC&MobileApp=AppTest&arrange=A&_type=json",
+                    type:"get",
+                    data:{},
+                    datatype:"json",
+                    success:function(data){
+                        alert("성공");
+                        console.log(data.response.body.items.item);
+
+                        var tourData = data.response.body.items.item;
+                        /*
+                            # 단순 for문 (배열일 경우 가능)
+                            for(var i of data){
+                            }
+                        */
+
+                        // 초기화
+                        var dataHtml = ``;
+
+                        // 기본 for문
+                        for(var i=0;i<tourData.length;i++){
+                            dataHtml += `
+                                <tr id='${tourData[i].galContentId}'>
+                                    <td>${tourData[i].galContentId}</td>
+                                    <td>${tourData[i].galTitle}</td>
+                                    <td>${tourData[i].galCreatedtime}</td>
+                                    <td>${tourData[i].galPhotographyLocation}</td>
+                                    <td>${tourData[i].galPhotographyMonth}</td>
+                                    <td>${tourData[i].galSearchKeyword}</td>
+                                    <td><img src="${tourData[i].galWebImageUrl}"></td>
+                                </tr>                        
+                            `;
+                        }
+                        $("#tbody").html(dataHtml);
+                    },
+                    error:function(){
+                        alert("실패");
+                    }
+                });//ajax
+            });//takeBtn
+
+            $("#uBtn").click(function(){
+                alert("uBtn");
+            });//uBtn
+
+            $("#dBtn").click(function(){
+                alert("dBtn");
+            });//uBtn            
+
+        });//jquery
+
+    </script>
+</head>
+<body>
+    <button type="button" id="takeBtn">데이터 가져오기</button>
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno"><br>
+        <label>이름</label>
+        <input type="text" id="name" name="name"><br>
+        <label>국어</label>
+        <input type="text" id="kor" name="kor"><br>
+        <label>영어</label>
+        <input type="text" id="eng" name="eng"><br>
+        <label>수학</label>
+        <input type="text" id="math" name="math" onkeyup="enterBtn(event)"><br>
+        <button type="button" id="sbtn" onclick="saveBtn()">성적저장</button>
+    </form>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>촬영일</th>
+            <th>촬영장소</th>
+            <th>작가</th>
+            <th>키워드</th>
+            <th>이미지</th>
+        </tr>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+</body>
+</html>

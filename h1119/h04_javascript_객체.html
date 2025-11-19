@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 자바스크립트 객체 - 파이썬과 통신
+        // 자바스크립트 객체는 key와 value구성으로 되어 있음, {}로 정의함
+        var stu = {
+            "no":1,"name":"홍길동","kor":100,"eng":90
+        }
+        
+        console.log(stu); // 객체
+        console.log(stu.no);
+        /*
+        web에서 다른 web으로 전달 시 object객체로 전달을 하면 해석이 안됨
+        */
+        console.log(JSON.stringify(stu)); // JSON 문자열로 출력
+
+
+        // 문자열 JSON타입의 문자열
+        var stu2 = '{"no":1,"name":"홍길동","kor":100,"eng":90}'
+
+        //console.log(stu2.no); // 오류
+
+        // 웹 테이터 받을때 문자열 형태
+        console.log(JSON.parse(stu2)); 
+
+        obj = JSON.parse(stu2); // 자바스크립트 객체로 변경
+        console.log(obj);
+        console.log(obj.no); // 객체의 no변수를 찾음        
+
+    </script>
+</body>
+</html>

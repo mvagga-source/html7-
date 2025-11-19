@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+
+        $(function(){
+            /*
+                js 6 화살표 함수
+
+            $("#btn").click(()=>{
+            });
+
+            function btn(){
+            };
+
+            var btn = ()=>{
+            };
+
+            // 익명 함수 function()
+            $("#btn").click(function(){
+
+            });
+            */
+            
+            /*
+                자바스크립트 : 기존태그를 가져와서 새로운 태그를 추가해서 다시 입력하는 형태 
+                제이쿼리 append() : 뒤에 추가, prepend() : 앞에 추가
+                        html() : 기존 태그 삭제후 추가
+
+            */
+
+            $("#btn").click(()=>{
+                //alert("hi");
+
+                //$("#fruit").val();
+                //$("#u01").append(`<li>${$("#fruit").val()}</li>`);
+                //$("#u01").prepend(`<li>${$("#fruit").val()}</li>`);
+                //$("#u01").html(`<li>${$("#fruit").val()}</li>`);
+                f_append();
+            });
+
+            $("#fruit").keyup((e)=>{
+                if(e.keyCode == 13) {
+                    f_append();
+                }
+            });
+
+            // 추가함수
+            var f_append = () => {
+                $("#u01").append(`<li>${$("#fruit").val()}</li>`);
+            }
+
+        }); // jquery
+
+        function saveBtn(){
+            $("#u01").append(`<li>${$("#fruit").val()}</li>`);
+        }
+
+    </script>
+</head>
+<body>
+    <input type="text" name="fruit" id="fruit"><br>
+    <button type="button" id="btn">저장</button>
+
+    <ul id="u01">
+        <li>바나나</li>
+        <li>딸기</li>
+    </ul>
+</body>
+</html>

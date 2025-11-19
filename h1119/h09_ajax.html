@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        // 자바스크립트 - 서버와 통신이 안됨
+        // ajax -> 서버와 통신이 가능함
+
+        $(function(){
+            
+            //json데이터 가져오기
+
+            $("#jBtn").click(function(){
+                //alert("전송");
+                
+                $.ajax({
+                    //url:"https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=bc215d8e4796a714b85a16e497b814711f7eb9528a81beafc8078486fa9b19cd&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&_type=json", // 가져올 url주소
+                    url:"member1.json",
+                    type:"get", // 전송방식
+                    data:{}, // 전송할 데이터
+                    dataType:"json", // 전송받는 데이터타입 - html,text,json,xml
+                    success:function(data){ // 성공시
+                        alert("성공");
+                        //$("#d01").text(data);
+                        //$("#d01").text(data[0].id+","+data[0].first_name);
+
+                        console.log(data);
+
+                        $("#d01").text(`
+                            ${data[0].id}, ${data[0].first_name}, ${data[0].last_name}, 
+                            ${data[0].email}, ${data[0].gender}, ${data[0].ip_address}
+                        `);
+                    },
+                    error:function(){   // 실패시
+                        alert("실패");
+                    }
+                });//ajax
+
+            })//jBtn
+            
+        })//jquery
+
+    </script>
+</head>
+<body>
+    <div id="d01"></div>
+    <button type="button" id="jBtn">확인</button>
+</body>
+</html>
