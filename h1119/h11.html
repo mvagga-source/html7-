@@ -31,11 +31,17 @@
 
         $(function(){
 
+            var page = 1;
+
             $("#takeBtn").click(function(){
                 //alert("takeBtn");
 
+                console.log(page);
+
+                var url = "https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=bc215d8e4796a714b85a16e497b814711f7eb9528a81beafc8078486fa9b19cd&numOfRows=10&"+"pageNo="+page+"&MobileOS=ETC&MobileApp=AppTest&arrange=A&_type=json"
+
                 $.ajax({
-                    url:"https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=bc215d8e4796a714b85a16e497b814711f7eb9528a81beafc8078486fa9b19cd&numOfRows=10&pageNo=2&MobileOS=ETC&MobileApp=AppTest&arrange=A&_type=json",
+                    url:url,
                     type:"get",
                     data:{},
                     datatype:"json",
@@ -75,13 +81,11 @@
                 });//ajax
             });//takeBtn
 
-            $("#uBtn").click(function(){
-                alert("uBtn");
-            });//uBtn
 
-            $("#dBtn").click(function(){
-                alert("dBtn");
-            });//uBtn            
+            $("#nextBtn").click(function(){
+                page += 1;
+            }); // nextBtn
+
 
         });//jquery
 
@@ -89,6 +93,7 @@
 </head>
 <body>
     <button type="button" id="takeBtn">데이터 가져오기</button>
+    <button type="button" id="nextBtn">다음</button>
     <form action="#" method="get">
         <label>번호</label>
         <input type="text" id="sno" name="sno"><br>
