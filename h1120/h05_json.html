@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        table, th, td{border:1px solid black;border-collapse: collapse;}
+        th,td{width:100px;height:30px;text-align: center;font-size: 12px;}
+    </style>    
+    <script>
+
+        // 자바스크립트 구문이 너무 길고 어려워서 jquery사용
+        /*
+        document.querySelector("takeBtn").addEventListener("click",function(){
+
+        });
+        */
+
+        $(function(){
+
+            /*
+            $("#takeBtn").click(function(){
+                //alert("takeBtn");
+                
+                $.ajax({
+                    url:"stus.json",
+                    type:"get",
+                    data:{},
+                    datatype:"json",
+                    success:function(data){
+                        alert("성공");
+                        console.log(data[0].sno);
+
+                        var dataHtml = ``;
+
+                        for(var i=0; i<data.length;i++){
+
+                            dataHtml += `
+                                <tr id='${data[i].sno}'>
+                                    <td>${data[i].sno}</td>
+                                    <td>${data[i].name}</td>
+                                    <td>${data[i].kor}</td>
+                                    <td>${data[i].eng}</td>
+                                    <td>${data[i].math}</td>
+                                    <td>${data[i].total}</td>
+                                    <td>${data[i].avg}</td>
+                                    <td>
+                                        <button type="button">수정</button>
+                                        <button type="button">삭제</button>
+                                    </td>
+                                </tr>
+                            `
+                        }
+
+                        $("#tbody").html(dataHtml);
+
+                    },
+                    error:function(){
+                        alert("실패");
+                    }
+                })//ajax
+
+            })//takeBtn
+            */
+
+            $.ajax({
+                url:"stus.json",
+                type:"get",
+                data:{},
+                datatype:"json",
+                success:function(data){
+                    alert("성공");
+                    console.log(data[0].sno);
+
+                    var dataHtml = ``;
+
+                    for(var i=0; i<data.length;i++){
+
+                        dataHtml += `
+                            <tr id='${data[i].sno}'>
+                                <td>${data[i].sno}</td>
+                                <td>${data[i].name}</td>
+                                <td>${data[i].kor}</td>
+                                <td>${data[i].eng}</td>
+                                <td>${data[i].math}</td>
+                                <td>${data[i].total}</td>
+                                <td>${data[i].avg}</td>
+                                <td>
+                                    <button type="button">수정</button>
+                                    <button type="button">삭제</button>
+                                </td>
+                            </tr>
+                        `
+                    }
+
+                    $("#tbody").html(dataHtml);
+
+                },
+                error:function(){
+                    alert("실패");
+                }
+
+            })//ajax            
+
+            $.ajax({
+
+                url:"stus.json",
+                type:"get",
+                data:{},
+                datatype:"json",
+                success:function(data){
+                    alert("성공");
+                    console.log(data)
+                },
+                error:function(){
+                    alert("실패");
+                }
+
+            })//ajax
+
+            $("#sbtn").click(function(){
+
+                console.log(sno);
+                var sno = $("#sno").val();
+                var name = $("#name").val();
+                var kor = Number($("#kor").val());
+                var eng = Number($("#eng").val());
+                var math = Number($("#math").val());
+                var total = kor+eng+math;
+                var avg = total/3;
+
+
+                dataHtml = $("#tbody").html();
+                dataHtml += `
+                    <tr id='${sno}'>
+                        <td>${sno}</td>
+                        <td>${name}</td>
+                        <td>${kor}</td>
+                        <td>${eng}</td>
+                        <td>${math}</td>
+                        <td>${total}</td>
+                        <td>${avg}</td>
+                        <td>
+                            <button type="button">수정</button>
+                            <button type="button">삭제</button>
+                        </td>
+                    </tr>                
+                `;
+
+                $("#tbody").html(dataHtml);
+
+            });//sbtn
+
+        })//jquery
+
+    </script>
+</head>
+<body>
+    <button type="button" id="takeBtn">데이터 가져오기</button>
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno"><br>
+        <label>이름</label>
+        <input type="text" id="name" name="name"><br>
+        <label>국어</label>
+        <input type="text" id="kor" name="kor"><br>
+        <label>영어</label>
+        <input type="text" id="eng" name="eng"><br>
+        <label>수학</label>
+        <input type="text" id="math" name="math"><br>
+        <button type="button" id="sbtn"">성적저장</button>
+    </form>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>합계</th>
+            <th>평균</th>
+            <th>비고</th>
+        </tr>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+</body>
+</html>

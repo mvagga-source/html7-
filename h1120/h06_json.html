@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="short icon" href="#">    
+    <title>Document</title>
+    <style>
+        table, th, td{border:1px solid black;border-collapse: collapse;}
+        th,td{width:100px;height:30px;text-align: center;font-size: 12px;}
+    </style>    
+    <script>
+
+        // 자바스크립트 구문이 너무 길고 어려워서 jquery사용
+        /*
+        document.querySelector("takeBtn").addEventListener("click",function(){
+
+        });
+        */
+        $(function(){
+
+            $("#takeBtn").click(function(){
+
+                $.ajax({
+                    url:"comment.json",
+                    type:"get",
+                    data:{},
+                    datatype:"json",
+                    success:function(data){
+                        //alert("성공");
+                        console.log(data);
+    
+                        var dataHtml = ``;
+    
+                        for(var i=0; i<data.length;i++){
+                            dataHtml += `
+                                <tr id='${data[i].cno}'>
+                                    <th>${data[i].cno}</th>
+                                    <th>${data[i].id}</th>
+                                    <th>${data[i].cdate}</th>
+                                    <th>${data[i].ccontent}</th>
+                                    <th>${data[i].cpw}</th>
+                                </tr>                            
+                            `;
+                        }
+                        
+                        $("#tbody").html(dataHtml);
+                    },
+                    error:function(){
+                        alert("실패");
+                    }
+                });//ajax
+
+            })//takeBtn
+
+        });//jquery
+
+    </script>
+</head>
+<body>
+    <button type="button" id="takeBtn">데이터 가져오기</button>
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno"><br>
+        <label>아이디</label>
+        <input type="text" id="name" name="name"><br>
+        <label>날짜</label>
+        <input type="text" id="kor" name="kor"><br>
+        <label>내용</label>
+        <input type="text" id="eng" name="eng"><br>
+        <label>비밀번호</label>
+        <input type="text" id="math" name="math"><br>
+
+        <button type="button" id="sbtn"">저장</button>
+    </form>
+    <table>
+        <colgroup>
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="60%">
+            <col width="10%">
+        </colgroup>
+        <tr>
+            <th>번호</th>
+            <th>아이디</th>
+            <th>날짜</th>
+            <th>내용</th>
+            <th>비밀번호</th>
+        </tr>
+        <tbody id="tbody"></tbody>
+    </table>
+</body>
+</html>
