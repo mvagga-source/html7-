@@ -45,11 +45,18 @@
                 }
 
                 if(!isNaN(age.substr(0,1))){
-                    alert("숫자만 입력 가능");
+                    alert("문자를 입력 해야");
                     return;
                 }
 
-            });
+                if(isNaN(age.substr(1))){
+                    alert("숫자를 입력하셔야 합니다.");
+                    return;
+                }                
+
+                console.log($("#age").val());
+
+            });//ageBtn
 
         }); //jquery
 
