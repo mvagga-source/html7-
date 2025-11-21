@@ -25,7 +25,7 @@
 		$(document).ready(function() {
 		});
 	*/
-
+	/*
 	$(function(){
 
 		$.ajax({
@@ -43,7 +43,7 @@
 		});//ajax
 
 	})//jquery
-
+*/
 </script>
 
 <style>
@@ -224,14 +224,28 @@
 					<!-- //이전다음글 -->
 					
 					<script>
-						let cno = 2;
+
+						// 전역변수
+						let flag = 0
+						let cno = 1;
+
+						let cid = ""; 
+						let cpw = "";
+						let cdate = "";
+						let ccontents = "";
 
 						$(function(){
+
+							/* 
+							    ------------------------
+								등록, 수정, 삭제 함수 정의
+								-------------------------
+							*/
 
 							// keyCode 함수
 							$(".replyTxt").keyup(function(e){
 								//console.log($(this));
-								console.log(e.keyCode);
+								//console.log(e.keyCode);
 
 								if(e.keyCode == 13){
 									//replyBtn();
@@ -240,8 +254,14 @@
 
 							});
 
-							// 등록버튼 함수
+							// 댓글 등록 함수
 							$(".replyBtn").click(function(){
+
+								if(flag != 0) {
+									alert("다른 댓글 수정화면을 닫아야 수정이 가능 합니다.");
+									return;
+								}
+
 								//alert("확인");
 								//console.log($(this));
 								//console.log($(this).closest("ul").find(".replynum").val());
@@ -249,24 +269,18 @@
 								//console.log(todayTime());
 
 								let ul = $(".replyBtn").closest("ul");
-	
-								if(ul.find(".replynum").val().length<=0){
-									alert("비밀번호를 입력 하세요.")
-									ul.find(".replynum").focus();
-									return;
-								}
-	
-								if(ul.find(".replyType").val().length<=0){
+								
+								if(ul.find(".replyType").val().trim().length<=0){
 									alert("댓글내용을 입력 하세요.");
 									ul.find(".replyType").focus();
 									return;
 								}
 	
 								// 댓글정보
-								let cid = "lsb";
-								let cpw = ul.find(".replynum").val();
-								let ccontents = ul.find(".replyType").val();
-								let cdate = todayTime();
+								cid = "lsb";
+								cpw = ul.find(".replynum").val();
+								ccontents = ul.find(".replyType").val();
+								cdate = todayTime();
 	
 								// 댓글정보 출력
 								var dataHtml = ``;
@@ -280,21 +294,123 @@
 										</li>
 									</ul>
 								`;
-								//$(".replyBox").prepend(dataHtml);
+								//$(".replyBox").append(dataHtml);
 								$(".replyBox").prepend(dataHtml);
 	
 								// 초기화
 								cno++; //
+
+								// 댓글갯수
+								c_count(1);
+
 								ul.find(".replynum").val("");
 								ul.find(".replyType").val("");
-								alert("하단 댓글을 저장합니다.")
+								//alert("하단 댓글을 저장합니다.")
 								
 							});//replyBtn
-							
-							// 등록버튼 호출함수
-							const replyBtn = function(){
-								//
-							}
+
+							// 댓글 삭제 함수    $(document).on(eventName, selector, eventHandler);
+							$(document).on("click",".deleteBtn",function(){
+								//alert("deleteBtn");
+								const ul = $(this).closest("ul");
+								console.log(ul.attr("id"));
+								if(confirm(ul.attr("id")+"번 댓글을 삭제하시겠습니까?")){
+									ul.remove();
+									// 댓글갯수
+									c_count(0);
+								}
+
+							});//deleteBtn
+
+							// 댓글 수정 함수
+							$(document).on("click",".updateBtn",function(){
+
+								if(flag != 0) {
+									alert("다른 댓글 수정화면을 닫아야 수정이 가능 합니다.");
+									return;
+								}
+
+								//alert("하단 댓글을 수정 합니다.");
+
+								const ul = $(this).closest("ul");
+								/*
+								console.log(ul.attr("id"));
+								console.log(ul.find(".name").text());
+								console.log(ul.find(".name").text().split(" ")[0]);
+								console.log(ul.find("span").text());
+								console.log(ul.find(".txt").text());
+								*/
+
+								cid = ul.find(".name").text().split(" ")[0];
+								cdate = ul.find("span").text();
+								ccontents = ul.find(".txt").text();
+
+								let dataHtml = `
+									<li class="name">${cid} <span>${cdate}</span></li>
+									<li class="txt"><textarea class="replyType">${ccontents}</textarea></li>
+									<li class="btn">
+										<a class="rebtn saveBtn">저장</a>
+										<a class="rebtn cancelBtn">취소</a>
+									</li>								
+								`;
+
+								ul.html(dataHtml);
+
+								flag = 1
+
+							});//updateBtn
+
+							// 수정 저장 함수
+							$(document).on("click",".saveBtn",function(){
+								//alert("saveBtn");
+								const ul = $(this).closest("ul");
+								//console.log(ul.attr("id"));
+
+								// 텍스트 일경우 val() 사용
+								ccontents = ul.find(".replyType").val();
+
+								let dataHtml = `
+									<li class="name">${cid} <span>[${todayTime()}]</span></li>
+									<li class="txt">${ccontents}</li>
+									<li class="btn">
+										<a class="rebtn updateBtn">수정</a>
+										<a class="rebtn deleteBtn">삭제</a>
+									</li>
+								`;
+
+								ul.html(dataHtml);
+
+							})//saveBtn
+
+							// 수정 취소 함수
+							$(document).on("click",".cancelBtn",function(){
+								//alert("cancelBtn");
+								const ul = $(this).closest("ul");
+								console.log(ul.attr("id"));
+
+								let dataHtml = `
+									<li class="name">${cid} <span>${cdate}</span></li>
+									<li class="txt">${ccontents}</li>
+									<li class="btn">
+										<a class="rebtn updateBtn">수정</a>
+										<a class="rebtn deleteBtn">삭제</a>
+									</li>
+								`;
+
+								ul.html(dataHtml);
+
+								flag = 0;
+
+							})//cancelBtn
+
+							/*
+							    -----------------------------
+								날짜, 댓글 갯수 호출함수 정의
+								const replyBtn = function(){
+									//
+								}
+							    -----------------------------
+							*/							
 
 							// 날짜시간함수
 							const todayTime = function(){
@@ -305,9 +421,19 @@
 								let hour = now.getHours();
 								let minute = now.getMinutes();
 								let second = now.getSeconds();
-
+								
 								return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
-							}
+							}; // todayTime							
+
+							// 댓글 갯수 증가 및 감소함수
+							const c_count = function(flag){
+								let = comment_cnt = Number($(".comment_cnt").text());
+								if (flag == 1){ // 댓글 추가
+									$(".comment_cnt").text(comment_cnt+1);
+								}else{	// 댓글 삭제
+									$(".comment_cnt").text(comment_cnt-1);
+								}
+							}//c_count
 
 						});//jquery
 
@@ -317,7 +443,7 @@
 					<div class="replyWrite">
 						<ul>
 							<li class="in">
-								<p class="txt">총 <span class="orange">3</span> 개의 댓글이 달려있습니다.</p>
+								<p class="txt">총 <span class="orange comment_cnt">0</span> 개의 댓글이 달려있습니다.</p>
 								<p class="password">비밀번호&nbsp;&nbsp;<input type="password" class="replynum" /></p>
 								<textarea class="replyType replyTxt"></textarea>
 							</li>
@@ -331,23 +457,26 @@
 					<div class="replyBox">
 
 						<!-- //댓글 리스트 -->
-						<ul>
-							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
-							<li class="txt">대박!!! 이거 저한테 완전 필요한 이벤트였어요!!</li>
-							<li class="btn">
-								<a class="rebtn updateBtn">수정</a>
-								<a class="rebtn deleteBtn">삭제</a>
-							</li>
-						</ul>
+						<!--
+							<ul id="1">
+								<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
+								<li class="txt">대박!!! 이거 저한테 완전 필요한 이벤트였어요!!</li>
+								<li class="btn">
+									<a class="rebtn updateBtn">수정</a>
+									<a class="rebtn deleteBtn">삭제</a>
+								</li>
+							</ul>
+						-->
 
 						<!-- //댓글 수정 -->
+						
 						<!--
 						<ul>
 							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
 							<li class="txt"><textarea class="replyType"></textarea></li>
 							<li class="btn">
-								<a href="#" class="rebtn">수정</a>
-								<a href="#" class="rebtn">삭제</a>
+								<a class="rebtn uSaveBtn">수정 저장</a>
+								<a class="rebtn cancelBtn">취소</a>
 							</li>
 						</ul>
 
@@ -358,6 +487,7 @@
 							</li>
 						</ul>
 						-->
+
 					</div>
 					<!-- //댓글 -->
 

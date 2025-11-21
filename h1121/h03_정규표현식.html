@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+
+        $(function(){
+
+            $("#age").keyup(function(e){
+                if(e.keyCode == 13){
+                    $("#ageBtn").click();
+                }
+            });
+
+            $("#ageBtn").click(function(){
+                //alert("확인");
+                /*
+                if($("#age").val().trim().length<4){
+                    alert("4자리 이상 입력하세요")
+                    return;
+                }
+
+                if(isNaN($("#age").val())){
+                    alert("숫자를 입력해야함");
+                    return;
+                }
+                */
+
+                /*
+                    5자리인지 확인
+                    첫글자가 문자인지 확인
+                    2~5번쨰까지 숫자인지 확인
+                */
+                let age = $("#age").val();
+                console.log(age.substr(0,1));
+                console.log(age.substr(1));
+                console.log(age.substr(1,2));
+
+                if(age.length<5){
+                    alert("5자리 이상 입력하셔야 합니다.")
+                    return;
+                }
+
+                if(!isNaN(age.substr(0,1))){
+                    alert("숫자만 입력 가능");
+                    return;
+                }
+
+            });
+
+        }); //jquery
+
+    </script>
+</head>
+<body>
+    <label>년도</label>
+    <input type="text" name="age" id="age" placeholder="년도 4자로 입력">
+    <input type="button" value="년도" id="ageBtn"><br>
+    <!--<input type="button" value="나이확인" id="ageBtn"><br>-->
+    <!--<button>로그인</button>-->
+</body>
+</html>

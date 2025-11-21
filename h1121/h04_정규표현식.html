@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+
+        $(function(){
+
+
+
+
+        }); //jquery
+
+        function aBtn(){
+            //alert("자바스크립트");
+            // 정규표현식 : 문자열에서 특정문자 조합을 찾기 위한 패턴
+            // 패턴시작 : / /
+            // ^시작, $끝
+            //[해당되는문자]
+            // [0-9], [0123456789],\d,[ab*&],[a-zA-Z] [ㄱ-ㅎ가-힣], ^ : 제외(not의미)
+            // {시작자리, 끝자리} : 자릿수
+            // test() => 맞으면 : true, 틀리면 : false
+            //let reg_age = /^[0-9]{4}$/;
+            //let reg_age = /^[^a-zA-Z]{4}$/;
+            //let reg_age = /^[a]{1}[0-9]{4}$/;
+            //010-1111-1111   /^[01]{3}-[0-9]{4}-[0-9]{4}$/;   /^01[0-9]{1}-[0-9]{4}-[0-9]{4}$/;   /^01.{1}-[0-9]{4}-[0-9]{4}$/;
+            //let reg_age = /^01[0-9]{1}-[0-9]{4}-[0-9]{4}$/;
+            //아이디 첫문자는 영문소문자만 가능, 영,숫자가능 3자리이상,10자리 이하
+            let reg_age = /^[a-z]{1}\w{2,9}$/; // /^[a-z]{1}[0-9a-zA-Z]{2,9}$/;
+
+            if(reg_age.test($("#age").val())){
+                alert("가능")
+            }else{
+                alert("불가능")
+            };
+        }
+
+    </script>
+</head>
+<body>
+    <label>년도</label>
+    <input type="text" name="age" id="age" placeholder="년도 4자로 입력">
+    <input type="button" value="년도" id="ageBtn" onclick="aBtn()"><br>
+</body>
+</html>
