@@ -97,16 +97,19 @@
 			
 			console.log(pw2);
 
-			//if($(this).val(),trim() == ""){
-			//	$("#pw_txt").html("");
-			//	return;
-			//}
+			if($(this).val().trim() == ""){
+				$("#pw_txt").text("");
+				return;
+			}
 
 			if(pw==pw2){
-				//$("#pw_txt").html('<span class='mvalign black'>* 비밀번호가 일치입니다.</span>');
-				$("#pw_txt").html('<span class='mvalign black'>* 비밀번호가 일치입니다.</span>');
+				$("#pw_txt").html(`
+					<span class="mvalign black">* 비밀번호가 일치입니다.</span>
+				`);
 			}else{
-				$("#pw_txt").html('<span class='mvalign orange'>* 비밀번호가 일치하지 않습니다.</span>');
+				$("#pw_txt").html(`
+					<span class='mvalign orange'>* 비밀번호가 일치하지 않습니다.</span>
+				`);
 			}
 		});
 
