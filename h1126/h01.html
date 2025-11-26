@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        var arr= [{title : '다음', url : 'http://daum.net'}, {title : '네이버', url : 'http://naver.com'}];
+
+        $.each(arr,function(index,item){
+
+            var result = '';
+            result += index +' : ' + item.title + ', ' + item.url;
+
+            console.log(result);
+        });
+
+
+    </script>
+
+
+</body>
+</html>
