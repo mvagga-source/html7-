@@ -371,6 +371,7 @@ select rownum, a.* from board5 a
 where rownum between 11 and 20 order by bno;
 
 -- rownum 응용
+-- 번호 부여 후 정렬순으로 진행되어 정렬 먼저 실행 후 번호 부여 실행
 select rownum rnum,a.* from (select * from board5 order by bno asc) a
 ;
 select * from 
@@ -380,7 +381,7 @@ select * from
 )
 where rnum between 21 and 30;
 
--- row_number() 응용
+-- row_number() 응용 // 정렬이 있는 경우 사용
 select row_number() over(order by bno asc) rnum,a.* from board5 a;
 
 select * from 
@@ -388,3 +389,17 @@ select * from
     select row_number() over(order by bno asc) rnum,a.* from board5 a -- 순번 설정 및 정렬
 )
 where rnum between 21 and 30;
+
+-- rank() : 중복순위 ,  dense_rank() : 중복순위 다음 순번 부여
+select rank() over(order by total desc) r,
+    dense_rank() over(order by total desc) d,
+    name,total 
+from stuscore;
+
+-- rank() update
+update stuscore a set rank=(
+    select ranks from(
+        select sno,rank() over(order by total desc) ranks from stuscore
+    )b where a.sno = b.sno
+);
+select * from stuscore order by total desc;

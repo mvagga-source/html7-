@@ -8,7 +8,7 @@ def getConnection():
         
 # db연결
 conn = getConnection() ## sql 실행
-cursor = conn.cursor() ## 창
+cursor = conn.cursor() ## DB와 상호작용하는 데 사용되는 객체로, SQL 구문을 실행하고 결과를 반환함
 
 # query구문
 query = "select * from member where rownum < 10"
