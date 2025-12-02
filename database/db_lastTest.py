@@ -105,31 +105,31 @@ def stuDelete():
 
     titleOutput()
 
-    if len(rows) > 0:
-        
-        for row in rows:
-            print(f"{row[0]}\t{row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\t{row[5]}\t{row[6]:.2f}\t{row[7].strftime("%y-%m-%d")}\t{row[8]}\t{row[9]}")
-        print()
-        
-        choice = input("정말 학생성적을 삭제하시겠습니까?(1.삭제, 0.취소)>> ")    
-        
-        if choice == "1":    
-            
-            conn = getConnection()    
-            cursor = conn.cursor()        
-            query = f"delete from stuscore3 where name = '{rows[0][1]}'"
-            cursor.execute(query)
-
-            conn.commit()
-
-            cursor.close()
-            conn.close()
-            print(f"\n**{rows[0][1]}학생 성적을 삭제하였습니다.")
-        else:
-            print("\n**취소 되었습니다.")
-        
-    else:
+    if len(rows) <= 0:
         print("\n**삭제하려는 학생이 없습니다.")
+        return
+    
+    for row in rows:
+        print(f"{row[0]}\t{row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\t{row[5]}\t{row[6]:.2f}\t{row[7].strftime("%y-%m-%d")}\t{row[8]}\t{row[9]}")
+    print()
+    
+    choice = input("정말 학생성적을 삭제하시겠습니까?(1.삭제, 0.취소)>> ")    
+    
+    if choice == "1":    
+        
+        conn = getConnection()    
+        cursor = conn.cursor()        
+        query = f"delete from stuscore3 where name = '{rows[0][1]}'"
+        cursor.execute(query)
+
+        conn.commit()
+
+        cursor.close()
+        conn.close()
+        print(f"\n**{rows[0][1]}학생 성적을 삭제하였습니다.")
+    else:
+        print("\n**취소 되었습니다.")
+        
         
 
 # 3. 성적수정
